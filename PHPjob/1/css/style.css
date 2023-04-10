@@ -1,46 +1,59 @@
-div .header{
+.header{
     height:100px;
     background-color: #141f40;
 }
-
-div div .box{
+.boxs{
+  display:flex;
+  width: 140px;
+  justify-content: space-between;
+  background-color:white;
+}
+.box{
     width:40px;
     height:40px;
     background-color: #a9004b;
-    border: 8px solid white;
 }
-div .padding{
+
+.padding{
+    width:140px;
     position: relative;
     top:40px;left:40px;right:60px;
+    justify-content: space-between;
 }
-div div .box1{
-    box-sizing: border-box;
-    border: solid white 5px;
-    margin: 10px;
+.box4{
+    box-sizing:content-box;
     width:140px;
     height:40px;
+    display:inline-block;
+    margin-bottom:10px;
     background-color: #ff863f;
+    outline: solid white 5px;
 }
 
-div .flexbox{
-    display:flex;
-    width:160px;
+.box4:last-child{
+    margin-bottom:0px;
+}
+
+.container{
+    /* display:flex; */
+    width:140px;
+    border:10px solid white;
     position: relative;
-    top: 20px; left: 220px;right:20px;
+    top: 20px; left: 190px;
 }
 
-div .main{
+.main{
     height:250px;
     Width:400px;
 }
-div div .right-top1{
+.right-top1{
    float:left;
 }
 
- div div div .right-top-left{    
+.right-top-left{    
     float:left;
  }
-div .left{
+.left{
     height:250px;
     Width:150px;
     background-color: #80bfa8;
@@ -53,7 +66,7 @@ div .left{
     clear: both;
  }
 
-div .right{
+.right{
     Width:250px;
     height:250px;
     background-color: #8c2727;
