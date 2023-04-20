@@ -14,7 +14,7 @@ $signUpMessage = "";
 // ログインボタンが押された場合
 if (isset($_POST["signUp"])) {
     // 1. ユーザIDの入力チェック
-    if (empty($_POST)) {  // 値が空のとき
+    if (empty($_POST["username"])) {  // 値が空のとき
         $errorMessage = 'ユーザーIDが未入力です。';
     } else if (empty($_POST["password"])) {
         $errorMessage = 'パスワードが未入力です。';
