@@ -65,16 +65,18 @@ $result = $dt->getPostData();
         <div><font color="#ff0000"><?php echo htmlspecialchars($errorMessage, ENT_QUOTES); ?></font></div>
         <div class ="size">
             <div class = "container">
-                <div>
+                <div class = "Box1">
                     <img class = "image" src = "img/logo.png" alt="ロゴ">
                 </div>
-                <div class = "user">
-                    <p>ようこそ <?php echo $user ?> さん</p>
-    
-                    <div class = "login">
+                <div class = "container2">
+                    <div class = "Box2">
+                        <p>ようこそ <?php echo $user ?> さん</p>
+                    </div>  
+                    <div class = "Box3">
                         <p>最終ログイン日:<?php echo date("Y-m-d H:i:s") ?></p>
                     </div>
                 </div>
+                
             </div>
             <table>
                 <tr>
@@ -96,9 +98,8 @@ $result = $dt->getPostData();
                                 break;
                                 default: echo others;
                                 break; 
-                            ?>
+                            } ?>
                             </td>
-                            <?php } ?>
                             <td><?php echo $row['comment'] ?></td>
                             <td><?php echo $row['created'] ?></td>
                         <tr>

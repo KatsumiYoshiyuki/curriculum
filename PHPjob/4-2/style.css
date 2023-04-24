@@ -14,28 +14,36 @@ td{
 .container{
     display:flex;
 }
+
+.container2{
+    Width:800px;
+    display: flex;
+    flex-direction: column;
+}
 .size{
         width:1000px;
 }
 
+.Box1{
+    flex-basis: 50%;
+}
 .image{
     background-color: #add8e6;
     width:200px;
     height:120px;
 }
 
-.user{
+.Box2{
     background-color: #87ceeb;
     height:60px;
     width:800px;
     text-align: right;
 }
 
-.login{
+.Box3{
     background-color: #00ffff;
     height:60px;
     width:800px;
-    align-items: center;
     text-align: right;
 }
 
@@ -53,6 +61,6 @@ td{
     height:120px;
 }
 
-.size{
+.size2{
     height:120px;
 }
