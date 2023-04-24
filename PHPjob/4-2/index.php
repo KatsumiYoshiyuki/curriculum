@@ -27,9 +27,7 @@ $dt = new getData();
 
 //ユーザ名を取得
 $result = $dt->getUserData();
-// $stmt = $pdo->query("Select first_name,last_name from users;");
-// $stmt->execute();
-// $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
 $user = $result['last_name'].$result['first_name']; 
 
 $result = "";
@@ -37,22 +35,6 @@ $result = "";
 //記事・カテゴリデータを取得
 $result = $dt->getPostData();
 
-// $stmt = $pdo->query("Select 
-// Id
-// , title
-// , Case 
-//     When category_no = 1 Then '".meal."'".
-//     "When category_no = 2 Then '".Travel."'".
-//     "ELSE '".Others."'".
-//   "End AS Category
-// ,comment 
-// ,DATE_Format(created,'%Y-%m-%d %H:%m:%s') As created 
-// From
-// posts 
-// Order By Id Desc"
-// );
-// $stmt->execute();
-// $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <!doctype html>

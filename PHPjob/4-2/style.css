@@ -1,6 +1,5 @@
 table{
-    margin-top: 10px;
-    margin:auto;
+    margin : auto;
 }
 
 th{
@@ -19,6 +18,7 @@ td{
     Width:800px;
     display: flex;
     flex-direction: column;
+    margin-bottom : 10px;
 }
 .size{
         width:1000px;
@@ -55,7 +55,6 @@ td{
 
 .footer{
     vertical-align: top;
-    margin-top: 10px;
     background-color: #00ced1;
     width:1000px;
     height:120px;
