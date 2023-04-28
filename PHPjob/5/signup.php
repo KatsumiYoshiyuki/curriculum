@@ -36,8 +36,6 @@
             //Insert文の作成
             $ins_sql = "INSERT INTO users(name, password) VALUES (:name,:password)";
 
-            echo $user;
-            echo $password_hash;
             $stmt = $pdo->prepare($ins_sql);
 
             // パラメータのバインド
