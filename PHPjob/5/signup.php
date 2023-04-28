@@ -25,29 +25,26 @@
             exit;
         }
         
-        //データベース接続
-        $db = db_connect();
         try{
-            //dateフォーマット
-            $date_format = "Y-m-d H:i:s";
+
+            // PDOStatementオブジェクトの作成
+            $pdo = new db_connect();
 
             //パスワードのハッシュ化
             $password_hash = password_hash($password, PASSWORD_DEFAULT);
-            //Insert文の作成
-            $insusers_sql = "INSERT 
-            INTO users(first_name, last_name, last_login) 
-            Values ( 
-                :name
-                ,:password
-                ,date (".$date_format."))";
 
-            // PDOStatementオブジェクトの作成
-            $stmt = $db->prepare($insusers_sql);
+            //Insert文の作成
+            $ins_sql = "INSERT INTO users(name, password) VALUES (:name,:password)";
+
+            echo $user;
+            echo $password_hash;
+            $stmt = $pdo->prepare($ins_sql);
 
             // パラメータのバインド
-            $stmt->bindValue(':name', $user, PDO::PARAM_STR);
-            $stmt->bindValue(':password', $password_hash, PDO::PARAM_STR);
-
+            $stmt->bindValue(':name', $user);
+            $stmt->bindValue(':password', $password_hash);
+            //SQL実行
+            $stmt->execute();
             // SQLクエリの実行
             if ($stmt->execute()) {
                 echo "登録が完了しました。";
