@@ -1,6 +1,6 @@
 <?php
     //db_connect.phpの読み込み
-    require_once("db_connect.php");
+    require_once("insData.php");
 
     //エラーメッセージ初期化
     $errorMessage = "";
@@ -24,34 +24,39 @@
             $errorMessage  = $contents."が入力されていません。";
             exit;
         }
-        
+
         try{
-
             // PDOStatementオブジェクトの作成
-            $pdo = new db_connect();
-
+            $dt = new insData();
             //パスワードのハッシュ化
-            $password_hash = password_hash($password, PASSWORD_DEFAULT);
+            $pass_hash = password_hash($password, PASSWORD_DEFAULT);
 
-            //Insert文の作成
-            $ins_sql = "INSERT INTO users(name, password) VALUES (:name,:password)";
+            // トランザクションを開始する
+            $dt->pdo->beginTransaction();
 
-            $stmt = $pdo->prepare($ins_sql);
+            //ユーザ情報の登録
+            $Err_Flg = $dt->insUserData($dt,$user,$pass_hash);
 
-            // パラメータのバインド
-            $stmt->bindValue(':name', $user);
-            $stmt->bindValue(':password', $password_hash);
-            //SQL実行
-            $stmt->execute();
             // SQLクエリの実行
-            if ($stmt->execute()) {
-                echo "登録が完了しました。";
+            if ($Err_Flg == False) {
+
+                echo "登録が完了しました。"."<br>";
+                $dt->pdo->Commit();
+                echo "3秒後に自働的にログイン画面に切り替わります。";
+
+                //login.phpにリダイレクト
+                header('Refresh: 3; login.php');
             } else {
-                echo "Error: " . $sql . "<br>" . $pdo->errorInfo();
-                die();
+                $errorInfo = $dt->pdo->errorInfo();
+                if ($errorInfo[0] !== '00000') {
+                    echo "Error: {$errorInfo[2]} ({$errorInfo[0]} - {$errorInfo[1]})";
+                }
+                $dt->pdo->RollBack();
+                $dt->pdo->die();
             }
+            exit;
         }catch(PDOException $e){
-            $errorMessage  = 'データベース接続に失敗しました。';
+            $errorMessage  = "ERROR: ".$e->getMessage();
         }
     }
 ?>
@@ -65,9 +70,8 @@
 </head>
 <body>
     <h1>ユーザー登録画面</h1>
-    <p><?php echo $errorMessage ?></p>
-    <form method="POST" action="signup.php">
-
+    <form method="POST" action="">
+        <p><?php echo $errorMessage ?></p>
         <input type="text" name="name" id="name" class="user" placeholder = "ユーザー名" required>
         <br><br>
         <input type="password" name="password" id="password" class="password" placeholder = "パスワード" required><br>
